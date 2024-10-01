@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 body{
-    background-color: rgb(109, 109, 109);
+    background-color: white;
     color:rgb(0, 0, 0);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     letter-spacing: -3%;
@@ -16,7 +16,7 @@ body{
 input{
     color:rgb(0, 0, 0);
     background-color:rgb(75, 75, 75);
-    border:1px solid rgb(121, 0, 0);
+    border:1px solid black;
     height:50px;
     width:245px;
     font-size:20px;
@@ -27,7 +27,7 @@ input{
 button{
     color:rgb(0, 0, 0);
     background-color:white;
-    border:1px solid white;
+    border:1px solid black;
     width:265px;
     height: 45px;
     font-size:20px;
