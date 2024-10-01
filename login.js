@@ -19,7 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     if (users[username] && users[username] === password) {
         // Speichern des Login-Status im localStorage
         localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = 'website.html';
+        window.location.href = 'Website.html';
     } else {
         alert('Ungültiger Benutzername oder Passwort (versuchs doch nochmal. Wenns dann immer noch nicht klappt hast du n schlechtes gedächtnis. LOL)');
     }
