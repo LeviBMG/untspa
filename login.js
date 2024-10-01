@@ -1,6 +1,7 @@
 const users = {
     'Max': 'PWvonMax',
     'Levi': 'Banane14'
+    'Julius': 'BananeEssen'
 };
 
 function login(username, password) {
