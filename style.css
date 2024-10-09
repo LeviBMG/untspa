@@ -78,6 +78,35 @@ ol {
     font-weight: bold; /* Fettdruck für Akzenttexte */
 }
 
+/* Flexbox-Layout für Bilder und Buttons nebeneinander */
+.resource-container {
+    display: flex; /* Flexbox Layout für nebeneinander */
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #1e1e1e; /* Etwas dunklerer Container */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Leichter Schatten */
+}
+
+.resource-image {
+    width: 200px;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+
+.resource-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Buttons im Container */
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
 /* Responsives Design */
 @media (max-width: 600px) {
     body {
@@ -94,5 +123,14 @@ ol {
 
     input.google {
         width: 100%; /* Eingabefelder in voller Breite */
+    }
+
+    .resource-container {
+        flex-direction: column; /* Auf kleineren Bildschirmen Bilder und Inhalt übereinander */
+    }
+
+    .resource-image {
+        margin-bottom: 10px; /* Abstand zwischen Bild und Inhalt */
+        margin-right: 0;
     }
 }
