@@ -97,6 +97,7 @@
 
             // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
             if (users[username] && users[username] === password) {
+                sessionStorage.setItem('username', username); // Benutzer im Session Storage speichern
                 window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
             } else {
                 errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
@@ -113,3 +114,4 @@
 
 </body>
 </html>
+
