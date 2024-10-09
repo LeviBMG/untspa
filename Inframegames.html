@@ -1,10 +1,49 @@
-<DOCTYPE html>
-    <html>
-    <head>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WTZ Inframegames</title>
-    </head>
-    <body>
-       <h1>Games</h1>
-       <h2>Spielaffe</h2>
-        <a href="https://raiffeisencampus.itslearning.com">Panik Button</a>
- <iframe src="https://www.spielaffe.de" title="Games (Inframe)" style="width:100%; height:500px; border:1px solid #ccc;"></iframe>
+    <script>
+        // Überprüfung, ob das Passwort korrekt eingegeben wurde
+        if (!sessionStorage.getItem('passwordVerified')) {
+            window.location.href = "Passwortgames.html"; // Weiterleitung zur Passwortseite, wenn nicht verifiziert
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Games</h1>
+    <h2>Spielaffe</h2>
+    <a href="https://raiffeisencampus.itslearning.com">Panik Button</a>
+    <iframe src="https://www.spielaffe.de" title="Games (Inframe)"></iframe>
+</body>
+</html>
