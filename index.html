@@ -13,14 +13,15 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f4f8;
+            background-color: #1a1a1a; /* Dunkler Hintergrund */
+            color: #ffffff; /* Textfarbe */
         }
 
         .container {
-            background-color: white;
+            background-color: #2a2a2a; /* Dunkelgrauer Container */
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             width: 300px;
             text-align: center;
         }
@@ -28,17 +29,22 @@
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: #333;
+            color: #ffffff; /* Weißer Titel */
         }
 
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #444; /* Dunkler Rahmen */
             border-radius: 4px;
             font-size: 16px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: #333; /* Dunkler Hintergrund für Eingabefelder */
+            color: #ffffff; /* Textfarbe der Eingabefelder */
+        }
+
+        input[type="text"]::placeholder, input[type="password"]::placeholder {
+            color: #aaa; /* Heller Platzhalter-Text */
         }
 
         button {
@@ -47,7 +53,7 @@
             margin-top: 10px;
             font-size: 16px;
             color: white;
-            background-color: #007BFF;
+            background-color: #007BFF; /* Blaue Button-Farbe */
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -55,11 +61,11 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Dunklere Farbe beim Hover */
         }
 
         .error {
-            color: red;
+            color: red; /* Farbe der Fehlermeldung */
             margin-top: 10px;
         }
     </style>
@@ -116,3 +122,4 @@
 
 </body>
 </html>
+
