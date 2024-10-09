@@ -3,34 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
     <link rel="stylesheet" href="style.css">
-    <title>Untspa</title>
+    <script>
+        // Überprüfung, ob der Benutzer angemeldet ist
+        if (!sessionStorage.getItem('username')) {
+            window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite, wenn nicht angemeldet
+        }
+    </script>
 </head>
 <body>
-    <h1>Hallo!</h1>
-
+    <h1>Hallo, <span id="username-display"></span>!</h1> <!-- Benutzername anzeigen -->
+    <script>
+        // Benutzername aus dem Session Storage abrufen und anzeigen
+        document.getElementById('username-display').textContent = sessionStorage.getItem('username');
+    </script>
     <form method="get" action="https://www.google.com/search" target="_blank">
         <input class="google" type="text" name="q" placeholder="Google Suche" size="31" value="">
     </form>
-    
     <form method="get" action="https://youtube.com/search" target="_blank">
         <input class="google" type="text" name="q" placeholder="Youtube Suche" size="31" value="">
     </form>
-    
     <form method="get" action="https://en.wikipedia.org/w/index.php">
         <input class="google" type="text" name="search" placeholder="Wikipedia Suche" size="31">
     </form>
-
     <h2>Itslearning</h2>
-    <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und man schnell darauf zugreifen kann.</p>     
+    <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
     <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
     <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open</button>
-
     <h2>Untis</h2>
-    <p>Web Untis ist ein Programm, auf dem du deinen Stundenplan und deine Noten von überall ansehen kannst.</p>
+    <p>Web Untis ist ein Programm auf dem du deinen Stundenplan und deine Noten von überall ansehen kannst.</p>
     <img src="webuntis-e1597344975658.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
     <button type="button" onclick="window.open('https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login','_blank')">Open</button>
-
     <h2>Neuigkeiten dieser Woche</h2>
     <ol>
         <li>2.10. Deutscharbeit Personenbeschreibung</li>
@@ -42,31 +46,15 @@
         <li>11.10. Spanisch Arbeit</li>
         <li>11.10. Letzter Schultag</li>
     </ol>
-    
     <h3><a href="Spiele.html">Spiele</a></h3>
     <h3><a href="Error402.html">Free V-Bucks</a></h3>
     <h3><a href="Rezepte.html">Kochrezepte</a></h3>
-    
     <iframe src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:100%; height:500px; border:1px solid #ccc;"></iframe>
     <h3><a href="Passwortgames.html">Inframe</a></h3>
-    
     <p></p>
-    
     <p class="text">Version 0.1 Beta</p>
     <p class="text-accent">Erstellt von Levi Geimer</p>
     <p class="text-accent">Bitte macht keinen Müll</p>
     <p class="text-accent">Credits an Max Breifellner</p>
-
-    <script>
-        // Überprüfen, ob der Benutzer angemeldet ist
-        if (!sessionStorage.getItem('username')) {
-            window.location.href = "index.html"; // Zur Anmeldeseite weiterleiten, wenn nicht angemeldet
-        } else {
-            // Wenn angemeldet, den Benutzernamen aus dem Session Storage abrufen und anzeigen
-            const username = sessionStorage.getItem('username');
-            document.querySelector('h1').textContent = `Willkommen, ${username}!`;
-        }
-    </script>
 </body>
 </html>
-
