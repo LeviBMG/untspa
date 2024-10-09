@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passwortgeschützte Seite</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -69,17 +68,16 @@
     </div>
 
     <script>
-        // Das verschlüsselte Passwort (MD5-Hash von "wtz")
-        const correctPasswordHash = "bc20baef75ea837b5be148ee1d8be104"; // MD5 für "wtz"
+        // Das korrekte Passwort (hier ohne Verschlüsselung)
+        const correctPassword = "wtz";
 
         // Funktion zur Überprüfung des Passworts
         function checkPassword() {
             const password = document.getElementById("password").value;
-            const hashedPassword = CryptoJS.MD5(password).toString(); // Passwort verschlüsseln
             const errorMessage = document.getElementById("error-message");
 
             // Überprüfung, ob das Passwort korrekt ist
-            if (hashedPassword === correctPasswordHash) {
+            if (password === correctPassword) {
                 sessionStorage.setItem('passwordVerified', 'true'); // Passwort als verifiziert speichern
                 window.location.href = "Inframegames.html"; // Weiterleitung zur neuen Seite
             } else {
