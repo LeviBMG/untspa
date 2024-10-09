@@ -69,7 +69,7 @@
     </div>
 
     <script>
-        // Verschlüsseltes Passwort (MD5 Hash von "wtz")
+        // Das verschlüsselte Passwort (MD5-Hash von "wtz")
         const correctPasswordHash = "bc20baef75ea837b5be148ee1d8be104"; // MD5 für "wtz"
 
         // Funktion zur Überprüfung des Passworts
@@ -80,7 +80,7 @@
 
             // Überprüfung, ob das Passwort korrekt ist
             if (hashedPassword === correctPasswordHash) {
-                sessionStorage.setItem('passwordVerified', true); // Passwort als verifiziert speichern
+                sessionStorage.setItem('passwordVerified', 'true'); // Passwort als verifiziert speichern
                 window.location.href = "Inframegames.html"; // Weiterleitung zur neuen Seite
             } else {
                 errorMessage.textContent = "Falsches Passwort. Bitte erneut versuchen.";
