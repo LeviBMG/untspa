@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moderne Anmeldeseite</title>
+    <title>Anmeldeseite</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,16 +13,16 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #121212; /* Sehr dunkler Hintergrund */
+            background-color: #1a1a1a; /* Dunkler Hintergrund */
             color: #ffffff; /* Textfarbe */
         }
 
         .container {
-            background-color: #1e1e1e; /* Dunkelgrauer Container */
+            background-color: #2a2a2a; /* Dunkelgrauer Container */
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            width: 320px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 300px;
             text-align: center;
         }
 
@@ -36,25 +36,24 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: none;
+            border: 1px solid #444; /* Dunkler Rahmen */
             border-radius: 4px;
             font-size: 16px;
             background-color: #333; /* Dunkler Hintergrund für Eingabefelder */
             color: #ffffff; /* Textfarbe der Eingabefelder */
-            outline: none;
         }
 
         input[type="text"]::placeholder, input[type="password"]::placeholder {
-            color: #aaaaaa; /* Heller Platzhalter-Text */
+            color: #aaa; /* Heller Platzhalter-Text */
         }
 
         button {
             width: 100%;
             padding: 12px;
-            margin-top: 20px;
+            margin-top: 10px;
             font-size: 16px;
             color: white;
-            background-color: #007bff; /* Blaue Button-Farbe */
+            background-color: #007BFF; /* Blaue Button-Farbe */
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -66,14 +65,8 @@
         }
 
         .error {
-            color: red;
+            color: red; /* Farbe der Fehlermeldung */
             margin-top: 10px;
-        }
-
-        /* Kleines extra für die Beschriftung unter dem Button */
-        .info {
-            margin-top: 10px;
-            color: #cccccc;
         }
     </style>
 </head>
@@ -85,7 +78,6 @@
         <input type="password" id="password" placeholder="Passwort eingeben">
         <button onclick="login()">Anmelden</button>
         <p id="error-message" class="error"></p>
-        <p class="info">Bitte Benutzername und Passwort eingeben.</p>
     </div>
 
     <script>
@@ -108,9 +100,10 @@
 
             // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
             if (users[username] && users[username] === password) {
+                sessionStorage.setItem('username', username); // Benutzer im Session Storage speichern
                 window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
             } else {
-                errorMessage.textContent = "Falscher Benutzername oder Passwort.";
+                errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
             }
         }
 
