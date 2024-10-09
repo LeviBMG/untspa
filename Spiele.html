@@ -2,6 +2,12 @@
     <html>
     <head>
         <link rel="stylesheet" href="style.css">
+            <script>
+        // Überprüfung, ob der Benutzer angemeldet ist
+        if (!sessionStorage.getItem('username')) {
+            window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite, wenn nicht angemeldet
+        }
+    </script>
     <title>WTZ Spiele</title>
     </head>
     <body>
