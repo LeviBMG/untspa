@@ -81,28 +81,22 @@
     </div>
 
     <script>
-        // Benutzerliste mit verschlüsselten Passwörtern (MD5)
+        // Benutzerliste mit unverschlüsselten Passwörtern
         const users = {
-            "Levi": "9798b6029f4e9d771fdac1cbe80db980",  // 'Banane14' in MD5
-            "Max": "fa2e82075f330ddee1e7d3504c9f93e5",  // 'PWvonMax' in MD5
-            "Gast": "81dc9bdb52d04dc20036dbd8313ed055",  // '1234' in MD5
-            "Julius": "1076654e4e2ba5ed51396163d4ca1c54"  // 'BananeEssen' in MD5
+            "Levi": "Banane14",
+            "Max": "PWvonMax",
+            "Gast": "1234",
+            "Julius": "BananeEssen"
         };
-
-        // Hilfsfunktion zum Hashen des Passworts (MD5)
-        function md5(string) {
-            return CryptoJS.MD5(string).toString();
-        }
 
         // Funktion zur Anmeldung
         function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const hashedPassword = md5(password); // Passwort verschlüsseln
             const errorMessage = document.getElementById("error-message");
 
             // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
-            if (users[username] && users[username] === hashedPassword) {
+            if (users[username] && users[username] === password) {
                 window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
             } else {
                 errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
@@ -116,9 +110,6 @@
             }
         });
     </script>
-
-    <!-- MD5-Hash-Bibliothek einfügen -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
 </body>
 </html>
