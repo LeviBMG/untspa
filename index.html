@@ -74,39 +74,5 @@
             "Levi": "89e6c98d92887942b2242135b6ab7b43", // 'Banane14' in MD5
             "Max": "2f548c005046a802dd7f6f92ab3495cb",  // 'PWvonMax' in MD5
             "Gast": "81dc9bdb52d04dc20036dbd8313ed055"  // '1234' in MD5
-            "Julius": "1076654e4e2ba5ed51396163d4ca1c54"  // 'BananeEssen' in MD5
         };
 
-        // Hilfsfunktion zum Hashen des Passworts (MD5, nur für Demo-Zwecke!)
-        function md5(string) {
-            return CryptoJS.MD5(string).toString();
-        }
-
-        // Funktion zur Anmeldung
-        function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const hashedPassword = md5(password); // Passwort verschlüsseln
-            const errorMessage = document.getElementById("error-message");
-
-            // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
-            if (users[username] && users[username] === hashedPassword) {
-                window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
-            } else {
-                errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
-            }
-        }
-
-        // "Enter" drücken zum Einloggen
-        document.getElementById("password").addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                login();
-            }
-        });
-    </script>
-
-    <!-- MD5-Hash-Bibliothek einfügen -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-
-</body>
-</html>
