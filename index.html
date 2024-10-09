@@ -4,52 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anmeldeseite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
             margin: 0;
+            background-color: #f0f4f8;
         }
 
         .container {
             background-color: white;
-            padding: 20px;
+            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
             text-align: center;
         }
 
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
+            color: #333;
         }
 
         input[type="text"], input[type="password"] {
             width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 16px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            margin-top: 10px;
             font-size: 16px;
-            background-color: #4CAF50;
             color: white;
+            background-color: #007BFF;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
 
         .error {
@@ -73,6 +79,40 @@
         const users = {
             "Levi": "89e6c98d92887942b2242135b6ab7b43", // 'Banane14' in MD5
             "Max": "2f548c005046a802dd7f6f92ab3495cb",  // 'PWvonMax' in MD5
-            "Gast": "81dc9bdb52d04dc20036dbd8313ed055"  // '1234' in MD5
+            "Gast": "81dc9bdb52d04dc20036dbd8313ed055",  // '1234' in MD5
+            "Julius": "1076654e4e2ba5ed51396163d4ca1c54"  // 'BananeEssen' in MD5
         };
 
+        // Hilfsfunktion zum Hashen des Passworts (MD5)
+        function md5(string) {
+            return CryptoJS.MD5(string).toString();
+        }
+
+        // Funktion zur Anmeldung
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const hashedPassword = md5(password); // Passwort verschlüsseln
+            const errorMessage = document.getElementById("error-message");
+
+            // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
+            if (users[username] && users[username] === hashedPassword) {
+                window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
+            } else {
+                errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
+            }
+        }
+
+        // "Enter" drücken zum Einloggen
+        document.getElementById("password").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                login();
+            }
+        });
+    </script>
+
+    <!-- MD5-Hash-Bibliothek einfügen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+
+</body>
+</html>
