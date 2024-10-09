@@ -81,27 +81,42 @@
     </div>
 
     <script>
-        // Benutzerliste mit unverschlüsselten Passwörtern
+        // Benutzerliste mit SHA-256 gehashten Passwörtern
         const users = {
-            "Levi": "Banane14",
-            "Max": "PWvonMax",
-            "Gast": "1234",
-            "Julius": "BananeEssen"
-            "Elias": "Eli_in_Space"
-        "Hendrik": "HTMLHendrik"
-        "7a": "Beste Klasse"
+            "Levi": "ca978112ca1bbdcafac231b39a23dc4da786eff8167d8bfe9a9d62e6cf2ab4b0", // "Banane14"
+            "Max": "eaa62ef1c3adf8f2fe0d1309fa3e8b5dbf4ba97f9bb76097c19e299b6ce37a3b", // "PWvonMax"
+            "Gast": "03ac674216f3e15c761ee1a5e255f067953623c8b388b44b83b5efbcd9d943a6", // "1234"
+            "Julius": "b1e7a688845215e8ef717fa998729fb9eae78b02950404db7793ef0b7c08da64", // "BananeEssen"
+            "Elias": "012a00c4da37f8b78e177b738cfd085e9d2c25f76db52fef674a70721bb6b49d", // "Eli_in_Space"
+            "Hendrik": "14d7d1fb5bfbeb34d1787e1f1d865c5f30f4da51f7fe5f00620fbdc6d2e0b37d", // "HTMLHendrik"
+            "7a": "610a7c7bb556cb5e5221550fd7c5b5b0146979da1e9144df75ba2bfeef7b33a1" // "Beste Klasse"
         };
 
+        // Funktion zum Hashen eines Passworts mit SHA-256
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hash = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
         // Funktion zur Anmeldung
-        function login() {
+        async function login() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
 
-            // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
-            if (users[username] && users[username] === password) {
-                sessionStorage.setItem('username', username); // Benutzer im Session Storage speichern
-                window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
+            if (users[username]) {
+                // Hashen des eingegebenen Passworts
+                const hashedPassword = await hashPassword(password);
+                
+                // Überprüfung, ob der gehashte Wert mit dem gespeicherten Hash übereinstimmt
+                if (users[username] === hashedPassword) {
+                    sessionStorage.setItem('username', username); // Benutzer im Session Storage speichern
+                    window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
+                } else {
+                    errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
+                }
             } else {
                 errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
             }
@@ -117,4 +132,3 @@
 
 </body>
 </html>
-
