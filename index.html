@@ -3,52 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login für Levis Seite</title>
-    <link rel="stylesheet" href="Stylelogin.css"></link>
-    <script src="login.js"></script> 
-    <script>
-        const users = {
-    'Max': 'PWvonMax',
-    'Levi': 'Banane14'
-    'Julius': 'BananeEssen'
-    'Herr Hofmann': 'Passwort'
-};
+    <title>Anmeldeseite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
 
-function login(username, password) {
-    if (users[username] && users[username] === password) {
-        localStorage.setItem('loggedInUser', username);
-        return true;
-    }
-    return false;
-}
-// Login-Formular-Event-Listener
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-    if (users[username] && users[username] === password) {
-        // Speichern des Login-Status im localStorage
-        localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = 'Website.html';
-    } else {
-        alert('Ungültiger Benutzername oder Passwort (versuchs doch nochmal. Wenns dann immer noch nicht klappt hast du n schlechtes gedächtnis. LOL)');
-    }
-});
-    </script>
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Login</h1>
-        <p class="text">Hi. Damit du diese Website benutzen kannst, <br>musst du einen Account haben
-        <form id="loginForm">
-            <input type="text" id="username" name="username" placeholder="Benutzername" required>
-            <input type="password" id="password" name="password" placeholder="Passwort" required>
-                <h3><a href="Website.html">Login</a></h3>
-            
-        </form>
-        <a class="text-a" href="Error404.html">Du hast noch keinen Account? Clicke hier.</a>  
-        <p class="text">Version 0.0.9 Alpha</p><p class="text-accent">Erstellt von Levi Geimer</p>
-        <p class="text-accent">Bitte macht keinen Müll</p>
-        <p class="text-accent">Credits an Max Breifellner</p>
+        <h1>Anmeldung</h1>
+        <input type="text" id="username" placeholder="Benutzername eingeben">
+        <input type="password" id="password" placeholder="Passwort eingeben">
+        <button onclick="login()">Anmelden</button>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        // Benutzerliste mit verschlüsselten Passwörtern (MD5)
+        const users = {
+            "Levi": "22f99d542aa9e3ae962d4d1a6cb8f965", // 'Banane14' in MD5
+            "Max": "0a3d4941e92258a99c3b743df2dbb5c4",  // 'PWvonMax' in MD5
+            "Gast": "81dc9bdb52d04dc20036dbd8313ed055"  // '1234' in MD5
+        };
+
+        // Hilfsfunktion zum Hashen des Passworts (MD5, nur für Demo-Zwecke!)
+        function md5(string) {
+            return CryptoJS.MD5(string).toString();
+        }
+
+        // Funktion zur Anmeldung
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const hashedPassword = md5(password); // Passwort verschlüsseln
+            const errorMessage = document.getElementById("error-message");
+
+            // Überprüfung, ob der Benutzername existiert und das Passwort korrekt ist
+            if (users[username] && users[username] === hashedPassword) {
+                window.location.href = "Website.html"; // Bei korrektem Login weiterleiten
+            } else {
+                errorMessage.textContent = "Falscher Benutzername oder Passwort. Bitte erneut versuchen.";
+            }
+        }
+
+        // "Enter" drücken zum Einloggen
+        document.getElementById("password").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                login();
+            }
+        });
+    </script>
+
+    <!-- MD5-Hash-Bibliothek einfügen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+
 </body>
+</html>
