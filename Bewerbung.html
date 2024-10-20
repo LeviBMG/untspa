@@ -10,7 +10,7 @@
             window.location.href = "Passwortbewerbung.html"; // Weiterleitung zur Passwortseite, wenn nicht verifiziert
         }
     </script>
-       <style>
+    <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-image: url('dein-bild-url.jpg'); /* Hier das Bild-URL einfügen */
@@ -38,10 +38,9 @@
             width: 70%;
             margin: auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Transparente Kästen */
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px); /* Für den verschwommenen Effekt */
         }
         .section {
             margin: 20px 0;
@@ -53,8 +52,9 @@
             padding-bottom: 10px;
             font-size: 1.5em;
         }
-        .content {
-            margin-top: 10px;
+        .line {
+            margin: 20px 0;
+            border-bottom: 1px solid #ccc;
         }
         input, textarea {
             width: 100%;
@@ -62,6 +62,7 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         button {
             background-color: #800020;
@@ -75,32 +76,51 @@
         button:hover {
             background-color: #b30030;
         }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-<form
-  action="https://formspree.io/f/xpwzwwao"
-  method="POST"
->
-  <label>
-<input class="INPT-Feedback-1" placeholder="Dein Name" type="text" id="Name" name="Name" required="">
-<div class="line"></div>
-<input class="INPT-Feedback-1" placeholder="Dein Alter" type="text" id="Alter" name="Alter" required="">
-<div class="line"></div>
-<input class="INPT-Feedback-1" placeholder="Dein Geschlecht" type="text" id="Geschlecht" name="Geschlecht" required="">
-<div class="line"></div>
-<input class="INPT-Feedback-1" placeholder="Deine E-Mail Adresse" type="email" id="Email" name="Email" required="">
-<div class="line"></div>
-<input class="INPT-Feedback-1" placeholder="In welchem bereich bist du tätig?" type="text" id="Bereich" name="Bereich" required="">
-<div class="line"></div>
-<input class="INPT-Feedback-1" placeholder="Andere Informationen" type="text" id="name" name="name">
-  <button type="submit">Send</button>
-</form>
-    <div class="line"></div>
+    <form action="https://formspree.io/f/xpwzwwao" method="POST" onsubmit="saveFormData()">
+        <header>
+            <h1>Bewerbung bei Weingarten</h1>
+        </header>
+        <div class="container">
+            <div class="section">
+                <label for="Name">Dein Name</label>
+                <input type="text" id="Name" name="Name" placeholder="Dein Name" required>
+                <div class="line"></div>
+
+                <label for="Alter">Dein Alter</label>
+                <input type="text" id="Alter" name="Alter" placeholder="Dein Alter" required>
+                <div class="line"></div>
+
+                <label for="Geschlecht">Dein Geschlecht</label>
+                <input type="text" id="Geschlecht" name="Geschlecht" placeholder="Dein Geschlecht" required>
+                <div class="line"></div>
+
+                <label for="Email">Deine E-Mail Adresse</label>
+                <input type="email" id="Email" name="Email" placeholder="Deine E-Mail Adresse" required>
+                <div class="line"></div>
+
+                <label for="Bereich">In welchem Bereich bist du tätig?</label>
+                <input type="text" id="Bereich" name="Bereich" placeholder="In welchem Bereich bist du tätig?" required>
+                <div class="line"></div>
+
+                <label for="AndereInformationen">Andere Informationen</label>
+                <textarea id="AndereInformationen" name="AndereInformationen" placeholder="Andere Informationen"></textarea>
+                <div class="line"></div>
+            </div>
+            <button type="submit">Send</button>
+        </div>
+    </form>
     <a href="Website.html">Home</a>
-<section class="footer">
-                <p class="text">Version 0.0.1 ALPHA</p>
-    <p class="text-accent">Weingarten GMBH</p>
-    <p class="text">Alle Rechte Vorbehalten</p>
+    <section class="footer">
+        <p class="text">Version 0.0.1 ALPHA</p>
+        <p class="text-accent">Weingarten GMBH</p>
+        <p class="text">Alle Rechte Vorbehalten</p>
+    </section>
 </body>
 </html>
