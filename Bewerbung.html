@@ -3,58 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weingarten Bewerbung</title>
-    <script>
-        // Überprüfung, ob das Passwort korrekt eingegeben wurde
-        if (!sessionStorage.getItem('passwordVerified')) {
-            window.location.href = "Passwortbewerbung.html"; // Weiterleitung zur Passwortseite, wenn nicht verifiziert
-        }
-    </script>
+    <title>Bewerbung bei Weingarten</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('dein-bild-url.jpg'); /* Hier das Bild-URL einfügen */
-            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-        }
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
-        }
-        header {
-            background-color: rgba(128, 0, 32, 0.8);
-            color: #fff;
-            padding: 30px;
-            text-align: center;
         }
         .container {
-            width: 70%;
-            margin: auto;
+            background: #fff;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .section {
-            margin: 20px 0;
-        }
-        .section-title {
-            margin: 0;
-            color: #800020;
-            border-bottom: 2px solid #800020;
-            padding-bottom: 10px;
-            font-size: 1.5em;
-        }
-        .line {
-            margin: 20px 0;
-            border-bottom: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
         }
         input, textarea {
             width: 100%;
@@ -62,65 +30,40 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
         }
         button {
-            background-color: #800020;
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
             color: #fff;
             border: none;
-            padding: 15px 20px;
-            cursor: pointer;
             border-radius: 5px;
-            font-size: 1em;
+            cursor: pointer;
         }
-        button:hover {
-            background-color: #b30030;
-        }
-        .footer {
-            text-align: center;
+        .home-button {
+            display: inline-block;
+            padding: 10px 20px;
             margin-top: 20px;
+            background: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <form action="https://formspree.io/f/xpwzwwao" method="POST" onsubmit="saveFormData()">
-        <header>
-            <h1>Bewerbung bei Weingarten</h1>
-        </header>
-        <div class="container">
-            <div class="section">
-                <label for="Name">Dein Name</label>
-                <input type="text" id="Name" name="Name" placeholder="Dein Name" required>
-                <div class="line"></div>
-
-                <label for="Alter">Dein Alter</label>
-                <input type="text" id="Alter" name="Alter" placeholder="Dein Alter" required>
-                <div class="line"></div>
-
-                <label for="Geschlecht">Dein Geschlecht</label>
-                <input type="text" id="Geschlecht" name="Geschlecht" placeholder="Dein Geschlecht" required>
-                <div class="line"></div>
-
-                <label for="Email">Deine E-Mail Adresse</label>
-                <input type="email" id="Email" name="Email" placeholder="Deine E-Mail Adresse" required>
-                <div class="line"></div>
-
-                <label for="Bereich">In welchem Bereich bist du tätig?</label>
-                <input type="text" id="Bereich" name="Bereich" placeholder="In welchem Bereich bist du tätig?" required>
-                <div class="line"></div>
-
-                <label for="AndereInformationen">Andere Informationen</label>
-                <textarea id="AndereInformationen" name="AndereInformationen" placeholder="Andere Informationen"></textarea>
-                <div class="line"></div>
-            </div>
-            <button type="submit">Send</button>
-        </div>
-    </form>
-    <a href="Website.html">Home</a>
-    <section class="footer">
-        <p class="text">Version 0.0.1 ALPHA</p>
-        <p class="text-accent">Weingarten GMBH</p>
-        <p class="text">Alle Rechte Vorbehalten</p>
-    </section>
+    <div class="container">
+        <h2>Bewerbung bei Weingarten</h2>
+        <form action="MAILTO:geimerlevi@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Nachricht:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit">Bewerbung senden</button>
+        </form>
+        <a href="/" class="home-button">Home</a>
+    </div>
 </body>
 </html>
