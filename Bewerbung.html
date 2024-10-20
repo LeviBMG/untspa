@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weingarten Bewerbung</title>
+    <script>
+        // Überprüfung, ob das Passwort korrekt eingegeben wurde
+        if (!sessionStorage.getItem('passwordVerified')) {
+            window.location.href = "Passwortbewerbung.html"; // Weiterleitung zur Passwortseite, wenn nicht verifiziert
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<form
+  action="https://formspree.io/f/xpwzwwao"
+  method="POST"
+>
+  <label>
+<input class="INPT-Feedback-1" placeholder="Dein Name" type="text" id="name" name="name" required="">
+<div class="line"></div>
+<input class="INPT-Feedback-1" placeholder="Dein Alter" type="text" id="name" name="name" required="">
+<div class="line"></div>
+<input class="INPT-Feedback-1" placeholder="Dein Geschlecht" type="text" id="name" name="name" required="">
+<div class="line"></div>
+<input class="INPT-Feedback-1" placeholder="Deine E-Mail Adresse" type="email" id="email" name="email" required="">
+<div class="line"></div>
+<input class="INPT-Feedback-1" placeholder="In welchem bereich bist du tätig?" type="text" id="name" name="name" required="">
+<div class="line"></div>
+<input class="INPT-Feedback-1" placeholder="Andere Informationen" type="text" id="name" name="name">
+  <button type="submit">Send</button>
+</form>
+<section class="footer">
+                <p class="text">VERSION 0.0.1 ALPHA</p>
+    <p class="text-accent">Weingarten GMBH</p>
+    <p class="text">Alle Rechte Vorbehalten</p>
+</body>
+</html>
