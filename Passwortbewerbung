@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passwortschutz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #121212; /* Dunkler Hintergrund */
+            color: #e0e0e0; /* Helle Schriftfarbe */
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 100px auto;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #333;
+            color: #ffffff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Passwortgeschützte Seite</h1>
+        <input type="password" id="password" placeholder="Passwort eingeben">
+        <button onclick="checkPassword()">Weiter</button>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        // Das korrekte Passwort (hier ohne Verschlüsselung)
+        const correctPassword = "1970";
+
+        // Funktion zur Überprüfung des Passworts
+        function checkPassword() {
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            // Überprüfung, ob das Passwort korrekt ist
+            if (password === correctPassword) {
+                sessionStorage.setItem('passwordVerified', 'true'); // Passwort als verifiziert speichern
+                window.location.href = "Bewerbung.html"; // Weiterleitung zur neuen Seite
+            } else {
+                errorMessage.textContent = "Falsches Passwort. Bitte erneut versuchen.";
+            }
+        }
+
+        // "Enter" drücken zum Einloggen
+        document.getElementById("password").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+<a href="Website.html">Home</a>
+</body>
+</html>
