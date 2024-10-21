@@ -101,16 +101,16 @@
                 <input type="text" id="Alter" name="Alter" placeholder="Dein Alter" required>
                 <div class="line"></div>
 
-                <label for="Geschlecht">Dein Geschlecht</label>
-                <input type="text" id="Geschlecht" name="Geschlecht" placeholder="Dein Geschlecht" required>
-                <div class="line"></div>
-
+                                  <label for="dog-names">Geschlecht:</label>
+<select name="Geschlecht" id="Geschlecht">
+    <option value="Männlich">Männlich</option>
+  <option value="Weiblich">Weiblich</option>
+  <option value="Divers">Divers</option>
+  <option value="Andere">Andere</option>
+</select>
+   
                 <label for="Email">Deine E-Mail Adresse</label>
                 <input type="email" id="Email" name="Email" placeholder="Deine E-Mail Adresse" required>
-                <div class="line"></div>
-
-                <label for="Bereich">In welchem Bereich bist du tätig?</label>
-                <input type="text" id="Bereich" name="Bereich" placeholder="In welchem Bereich bist du tätig?" required>
                 <div class="line"></div>
 
                     <label for="dog-names">In welchem Bereich bist du tätig?:</label>
@@ -120,9 +120,10 @@
   <option value="Bürofachkraft">Bürofachkraft</option>
   <option value="Projektmanager">Projektmanagerin</option>
 </select>
+                     <div class="line"></div>
 
                 <label for="Andere Informationen">Andere Informationen</label>
-                <textarea id="AndereInformationen" name="AndereInformationen" placeholder="Andere Informationen"></textarea>
+                <textarea id="Andere Informationen" name="Andere Informationen" placeholder="Andere Informationen"></textarea>
 
             </div>
             <button type="submit">Send</button>
