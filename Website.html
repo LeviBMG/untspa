@@ -5,145 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untspa v2 BETA</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Navigation Styling */
-        nav {
-            background-color: #333;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-
-        nav ul li {
-            display: inline-block;
-            position: relative;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-        }
-
-        /* Dropdown Styling */
-        nav ul li ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #333;
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li:hover ul {
-            display: block;
-        }
-
-        nav ul li ul li {
-            display: block;
-        }
-
-        nav ul li ul li a {
-            padding: 10px;
-            width: 150px;
-            display: block;
-        }
-
-        nav ul li a:hover,
-        nav ul li ul li a:hover {
-            background-color: #575757;
-        }
-
-        /* Untspa Schriftzug */
-        .logo {
-            font-size: 36px;
-            font-weight: bold;
-            color: white;
-        }
-
-        /* Styling für den Itslearning, Untis Bereich */
-        .content-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 20px;
-        }
-
-        .itslearning-container {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        .itslearning-container img {
-            display: block;
-            margin: 0 auto;
-        }
-
-        .itslearning-container button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            display: block;
-        }
-
-        .itslearning-container button:hover {
-            background-color: #575757;
-        }
-
-        iframe {
-            flex: 2;
-            border: 1px solid #ccc;
-        }
-
-        /* Footer Styling */
-        .text, .text-accent {
-            text-align: center;
-        }
-
-        /* Formspree Form Styling */
-        form {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        label {
-            display: block;
-            margin: 10px 0;
-        }
-
-        input[type="text"], input[type="email"] {
-            padding: 8px;
-            width: 250px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        button[type="submit"] {
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #575757;
-        }
-    </style>
     <script>
         // Überprüfung, ob der Benutzer angemeldet ist
         if (!sessionStorage.getItem('username')) {
@@ -152,45 +13,30 @@
     </script>
 </head>
 <body>
-
-    <!-- Navigation mit Dropdown-Menü und Untspa Schriftzug -->
-    <nav>
-        <ul>
-            <li>
-                <a href="#">Menü</a>
-                <ul>
-                    <li><a href="#itslearning">Itslearning</a></li>
-                    <li><a href="#untis">Untis</a></li>
-                    <li><a href="#news">Neuigkeiten</a></li>
-                </ul>
-            </li>
-        </ul>
-        <div class="logo">Untspa</div>
-    </nav>
-
-    <!-- Benutzername -->
-    <h1>Hallo, <span id="username-display"></span>!</h1>
+    <h1>Hallo, <span id="username-display"></span>!</h1> <!-- Benutzername anzeigen -->
     <script>
         // Benutzername aus dem Session Storage abrufen und anzeigen
         document.getElementById('username-display').textContent = sessionStorage.getItem('username');
     </script>
-
-    <!-- Itslearning und Untis Content Container -->
-    <div class="content-container">
-        <!-- Itslearning -->
-        <div class="itslearning-container" id="itslearning">
-            <h2>Itslearning</h2>
-            <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
-            <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
-            <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open Itslearning</button>
-        </div>
-
-        <!-- WebUntis -->
-        <iframe id="untis" src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:50%; height:450px;"></iframe>
-    </div>
-
-    <!-- Neuigkeiten -->
-    <h2 id="news">Neuigkeiten dieser Woche</h2>
+    <form method="get" action="https://www.google.com/search" target="_blank">
+        <input class="google" type="text" name="q" placeholder="Google Suche" size="31" value="">
+    </form>
+    <form method="get" action="https://youtube.com/search" target="_blank">
+        <input class="google" type="text" name="q" placeholder="Youtube Suche" size="31" value="">
+    </form>
+    <form method="get" action="https://en.wikipedia.org/w/index.php">
+        <input class="google" type="text" name="search" placeholder="Wikipedia Suche" size="31">
+    </form>
+    <h2>Itslearning</h2>
+    <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
+<div class="itslearning-container">
+    <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
+    <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open Itslearning</button>
+</div>
+    <h2>Untis</h2>
+    <p>Web Untis ist ein Programm auf dem du deinen Stundenplan und deine Noten von überall ansehen kannst.</p>
+    <iframe src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:50%; height:450px; border:1px solid #ccc;"></iframe>
+    <h2>Neuigkeiten dieser Woche</h2>
     <ol>
         <li>2.10. Deutscharbeit Personenbeschreibung</li>
         <li>Schulfrei, weil Tag der deutschen Einheit</li>
@@ -201,29 +47,34 @@
         <li>11.10. Spanisch Arbeit</li>
         <li>11.10. Letzter Schultag</li>
     </ol>
-
-    <!-- Footer -->
+    <a href="Spiele.html"><button type="button">Spiele</button></a>
+    <a href="Rezepte.html"><button type="button">Kochrezepte</button></a>
+    <a href="Passwortgames.html"><button type="button">Inframe</button></a>
+        <a href="Error402.html"><button type="button">Free V-Bucks</button></a>
+            <a href="Passwortbewerbung.html"><button type="button">?</button></a>
+    <p></p>
     <p class="text">Version 0.1 Beta</p>
     <p class="text-accent">Erstellt von Levi Geimer</p>
     <p class="text-accent">Bitte macht keinen Müll</p>
     <p class="text-accent">Credits an Max Breifellner</p>
-
-    <!-- Formspree Feedback -->
-    <form action="https://formspree.io/f/xpwzwwao" method="POST">
-        <label>
-            Dein Name:
-            <input type="text" name="Name">
-        </label>
-        <label>
-            Deine Email:
-            <input type="email" name="email">
-        </label>
-        <label>
-            Feedback:
-            <input type="text" name="Feedback">
-        </label>
-        <button type="submit">Send</button>
-    </form>
-
+    <form
+  action="https://formspree.io/f/xpwzwwao"
+  method="POST"
+>
+          <label>
+    Deine Email:
+    <input type="text" name="Name">
+  </label>
+  <label>
+    Deine Email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Feedback:
+ <input type="text" name="Feedback">
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
 </body>
 </html>
