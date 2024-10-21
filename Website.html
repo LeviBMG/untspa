@@ -10,51 +10,77 @@
         nav {
             background-color: #333;
             padding: 10px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
+            position: relative;
         }
 
         nav ul li {
-            margin: 0 15px;
+            display: inline-block;
+            position: relative;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
             padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
         }
 
-        nav ul li a:hover {
+        /* Dropdown Styling */
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li:hover ul {
+            display: block;
+        }
+
+        nav ul li ul li {
+            display: block;
+        }
+
+        nav ul li ul li a {
+            padding: 10px;
+            width: 150px;
+            display: block;
+        }
+
+        nav ul li a:hover,
+        nav ul li ul li a:hover {
             background-color: #575757;
         }
 
-        /* Weitere Stile */
-        body {
-            font-family: Arial, sans-serif;
+        /* Untspa Schriftzug */
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
         }
 
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        form {
-            text-align: center;
-            margin-bottom: 20px;
+        /* Styling für den Itslearning, Untis Bereich */
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
         }
 
         .itslearning-container {
-            text-align: center;
-            margin-top: 20px;
+            flex: 1;
+            margin-right: 20px;
         }
 
         .itslearning-container img {
@@ -70,6 +96,7 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            display: block;
         }
 
         .itslearning-container button:hover {
@@ -77,33 +104,8 @@
         }
 
         iframe {
-            display: block;
-            margin: 0 auto;
+            flex: 2;
             border: 1px solid #ccc;
-        }
-
-        ol {
-            text-align: center;
-        }
-
-        ol li {
-            list-style-position: inside;
-        }
-
-        /* Buttons Styling */
-        a button {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        a button:hover {
-            background-color: #575757;
         }
 
         /* Footer Styling */
@@ -151,16 +153,19 @@
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation mit Dropdown-Menü und Untspa Schriftzug -->
     <nav>
         <ul>
-            <li><a href="#google">Google Suche</a></li>
-            <li><a href="#youtube">Youtube Suche</a></li>
-            <li><a href="#wikipedia">Wikipedia Suche</a></li>
-            <li><a href="#itslearning">Itslearning</a></li>
-            <li><a href="#untis">Untis</a></li>
-            <li><a href="#news">Neuigkeiten</a></li>
+            <li>
+                <a href="#">Menü</a>
+                <ul>
+                    <li><a href="#itslearning">Itslearning</a></li>
+                    <li><a href="#untis">Untis</a></li>
+                    <li><a href="#news">Neuigkeiten</a></li>
+                </ul>
+            </li>
         </ul>
+        <div class="logo">Untspa</div>
     </nav>
 
     <!-- Benutzername -->
@@ -170,33 +175,19 @@
         document.getElementById('username-display').textContent = sessionStorage.getItem('username');
     </script>
 
-    <!-- Google Suche -->
-    <form id="google" method="get" action="https://www.google.com/search" target="_blank">
-        <input class="google" type="text" name="q" placeholder="Google Suche" size="31" value="">
-    </form>
+    <!-- Itslearning und Untis Content Container -->
+    <div class="content-container">
+        <!-- Itslearning -->
+        <div class="itslearning-container" id="itslearning">
+            <h2>Itslearning</h2>
+            <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
+            <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
+            <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open Itslearning</button>
+        </div>
 
-    <!-- Youtube Suche -->
-    <form id="youtube" method="get" action="https://youtube.com/search" target="_blank">
-        <input class="google" type="text" name="q" placeholder="Youtube Suche" size="31" value="">
-    </form>
-
-    <!-- Wikipedia Suche -->
-    <form id="wikipedia" method="get" action="https://en.wikipedia.org/w/index.php">
-        <input class="google" type="text" name="search" placeholder="Wikipedia Suche" size="31">
-    </form>
-
-    <!-- Itslearning -->
-    <h2 id="itslearning">Itslearning</h2>
-    <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
-    <div class="itslearning-container">
-        <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
-        <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open Itslearning</button>
+        <!-- WebUntis -->
+        <iframe id="untis" src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:50%; height:450px;"></iframe>
     </div>
-
-    <!-- Untis -->
-    <h2 id="untis">Untis</h2>
-    <p>Web Untis ist ein Programm auf dem du deinen Stundenplan und deine Noten von überall ansehen kannst.</p>
-    <iframe src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:50%; height:450px;"></iframe>
 
     <!-- Neuigkeiten -->
     <h2 id="news">Neuigkeiten dieser Woche</h2>
@@ -210,13 +201,6 @@
         <li>11.10. Spanisch Arbeit</li>
         <li>11.10. Letzter Schultag</li>
     </ol>
-
-    <!-- Buttons -->
-    <a href="Spiele.html"><button type="button">Spiele</button></a>
-    <a href="Rezepte.html"><button type="button">Kochrezepte</button></a>
-    <a href="Passwortgames.html"><button type="button">Inframe</button></a>
-    <a href="Error402.html"><button type="button">Free V-Bucks</button></a>
-    <a href="Passwortbewerbung.html"><button type="button">?</button></a>
 
     <!-- Footer -->
     <p class="text">Version 0.1 Beta</p>
