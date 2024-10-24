@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untspa v2 BETA</title>
+    
     <style>
         /* Standard Light Mode */
         body {
             background-color: #ffffff;
             color: #000000;
+            transition: background-color 0.5s, color 0.5s; /* Weiche Übergänge */
         }
 
         /* Dark Mode Styles */
@@ -21,8 +23,11 @@
         button {
             background-color: #dddddd;
             color: #000000;
-            padding: 10px;
-            margin: 10px 0;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.5s, color 0.5s; /* Weiche Übergänge */
         }
 
         body.dark-mode button {
@@ -30,6 +35,7 @@
             color: #ffffff;
         }
     </style>
+
     <script>
         // Überprüfung, ob der Benutzer angemeldet ist
         if (!sessionStorage.getItem('username')) {
@@ -38,7 +44,8 @@
 
         // Funktion zum Überprüfen und Anwenden des Modus beim Laden der Seite
         window.onload = function() {
-            const preferredMode = localStorage.getItem('theme') || 'dark'; // Darkmode ist Standard für neue Benutzer
+            // Darkmode ist Standard für neue Benutzer
+            const preferredMode = localStorage.getItem('theme') || 'dark'; 
             document.body.classList.toggle('dark-mode', preferredMode === 'dark');
         };
 
@@ -61,7 +68,7 @@
         document.getElementById('username-display').textContent = sessionStorage.getItem('username');
     </script>
 
-    <!-- Inhalte bleiben hier -->
+    <!-- Inhalte -->
     <form method="get" action="https://www.google.com/search" target="_blank">
         <input class="google" type="text" name="q" placeholder="Google Suche" size="31" value="">
     </form>
@@ -71,7 +78,18 @@
     <form method="get" action="https://en.wikipedia.org/w/index.php">
         <input class="google" type="text" name="search" placeholder="Wikipedia Suche" size="31">
     </form>
-    
+
+    <h2>Itslearning</h2>
+    <p>Itslearning ist eine Plattform, auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
+    <div class="itslearning-container">
+        <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
+        <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open Itslearning</button>
+    </div>
+
+    <h2>Untis</h2>
+    <p>Web Untis ist ein Programm, auf dem du deinen Stundenplan und deine Noten von überall ansehen kannst.</p>
+    <iframe src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:50%; height:450px; border:1px solid #ccc;"></iframe>
+
     <h2>Neuigkeiten dieser Woche</h2>
     <ol>
         <li>2.10. Deutscharbeit Personenbeschreibung</li>
@@ -79,7 +97,7 @@
         <li>4.10. Jobday</li>
         <li>7.10. Mathe Ka, Thema: Zuordnungen, Daten darstellen</li>
         <li>10.10. Jugend trainiert für Olympia Fußball</li>
-        <li>10.10. Geschichte AÜ Karl der große</li>
+        <li>10.10. Geschichte AÜ Karl der Große</li>
         <li>11.10. Spanisch Arbeit</li>
         <li>11.10. Letzter Schultag</li>
     </ol>
@@ -90,11 +108,12 @@
     <a href="Error402.html"><button type="button">Free V-Bucks</button></a>
     <a href="Passwortbewerbung.html"><button type="button">?</button></a>
 
+    <p></p>
     <p class="text">Version 0.1 Beta</p>
     <p class="text-accent">Erstellt von Levi Geimer</p>
     <p class="text-accent">Bitte macht keinen Müll</p>
     <p class="text-accent">Credits an Max Breifellner</p>
-    
+
     <p class="text-accent">Gebt gerne Feedback:</p>
     <form action="https://formspree.io/f/xpwzwwao" method="POST">
         <label>
