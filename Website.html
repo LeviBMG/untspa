@@ -26,13 +26,22 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            margin: 10px;
             transition: background-color 0.5s, color 0.5s; /* Weiche Übergänge */
         }
 
         body.dark-mode button {
             background-color: #333333;
             color: #ffffff;
+        }
+
+        /* Buttons oben rechts positionieren */
+        .top-right-buttons {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
         }
     </style>
 
@@ -47,6 +56,7 @@
             // Darkmode ist Standard für neue Benutzer
             const preferredMode = localStorage.getItem('theme') || 'dark'; 
             document.body.classList.toggle('dark-mode', preferredMode === 'dark');
+            resetInactivityTimer(); // Inaktivitäts-Überwachung starten
         };
 
         // Funktion zum Umschalten des Modus
@@ -55,13 +65,46 @@
             const theme = currentTheme ? 'dark' : 'light';
             localStorage.setItem('theme', theme); // Speichern der Auswahl in localStorage
         }
+
+        // Logout-Funktion
+        function logout() {
+            sessionStorage.removeItem('username');
+            window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite nach Logout
+        }
+
+        // Inaktivitäts-Überwachung
+        let inactivityTimer;
+        let warningTimer;
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            clearTimeout(warningTimer);
+
+            // Nach 20 Minuten Inaktivität eine Warnung zeigen
+            warningTimer = setTimeout(function() {
+                alert("Du warst 20 Minuten inaktiv. Du wirst in 5 Minuten automatisch abgemeldet.");
+            }, 20 * 60 * 1000); // 20 Minuten in Millisekunden
+
+            // Nach 25 Minuten Inaktivität abmelden
+            inactivityTimer = setTimeout(function() {
+                logout();
+                alert("Du wurdest wegen Inaktivität abgemeldet.");
+            }, 25 * 60 * 1000); // 25 Minuten in Millisekunden
+        }
+
+        // Aktivitäten, die den Timer zurücksetzen
+        window.onmousemove = resetInactivityTimer;
+        window.onkeydown = resetInactivityTimer;
     </script>
 </head>
 <body>
     <h1>Hallo, <span id="username-display"></span>!</h1> <!-- Benutzername anzeigen -->
 
-    <!-- Button zum Umschalten des Dark/Light-Modus -->
-    <button onclick="toggleTheme()">Dark/Light Mode</button>
+    <!-- Buttons oben rechts -->
+    <div class="top-right-buttons">
+        <button onclick="toggleTheme()">Dark/Light Mode</button>
+        <button onclick="logout()">Logout</button>
+    </div>
 
     <script>
         // Benutzername aus dem Session Storage abrufen und anzeigen
