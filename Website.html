@@ -4,20 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Untspa v2 BETA</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Standard Light Mode */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Optional: Style für Schaltflächen, die sich je nach Modus ändern sollen */
+        button {
+            background-color: #dddddd;
+            color: #000000;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        body.dark-mode button {
+            background-color: #333333;
+            color: #ffffff;
+        }
+    </style>
     <script>
         // Überprüfung, ob der Benutzer angemeldet ist
         if (!sessionStorage.getItem('username')) {
             window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite, wenn nicht angemeldet
         }
+
+        // Funktion zum Überprüfen und Anwenden des Modus beim Laden der Seite
+        window.onload = function() {
+            const preferredMode = localStorage.getItem('theme') || 'dark'; // Darkmode ist Standard für neue Benutzer
+            document.body.classList.toggle('dark-mode', preferredMode === 'dark');
+        };
+
+        // Funktion zum Umschalten des Modus
+        function toggleTheme() {
+            const currentTheme = document.body.classList.toggle('dark-mode');
+            const theme = currentTheme ? 'dark' : 'light';
+            localStorage.setItem('theme', theme); // Speichern der Auswahl in localStorage
+        }
     </script>
 </head>
 <body>
     <h1>Hallo, <span id="username-display"></span>!</h1> <!-- Benutzername anzeigen -->
+
+    <!-- Button zum Umschalten des Dark/Light-Modus -->
+    <button onclick="toggleTheme()">Dark/Light Mode umschalten</button>
+
     <script>
         // Benutzername aus dem Session Storage abrufen und anzeigen
         document.getElementById('username-display').textContent = sessionStorage.getItem('username');
     </script>
+
+    <!-- Inhalte bleiben hier -->
     <form method="get" action="https://www.google.com/search" target="_blank">
         <input class="google" type="text" name="q" placeholder="Google Suche" size="31" value="">
     </form>
@@ -27,15 +71,7 @@
     <form method="get" action="https://en.wikipedia.org/w/index.php">
         <input class="google" type="text" name="search" placeholder="Wikipedia Suche" size="31">
     </form>
-    <h2>Itslearning</h2>
-    <p>Itslearning ist eine Plattform auf der man die Materialien für den Unterricht übersichtlich dargestellt bekommt und schnell darauf zugreifen kann.</p>
-<div class="itslearning-container">
-    <img src="itslearning-Logo-zum-Artikel.png" width="200px" alt="Das Bild ist grade nicht verfügbar">
-    <button type="button" onclick="window.open('https://raiffeisencampus.itslearning.com/index.aspx?SessionExpired=0','_blank')">Open Itslearning</button>
-</div>
-    <h2>Untis</h2>
-    <p>Web Untis ist ein Programm auf dem du deinen Stundenplan und deine Noten von überall ansehen kannst.</p>
-    <iframe src="https://euterpe.webuntis.com/WebUntis/?school=R-C+Wirges#/basic/login" title="Webuntis (Inframe)" style="width:50%; height:450px; border:1px solid #ccc;"></iframe>
+    
     <h2>Neuigkeiten dieser Woche</h2>
     <ol>
         <li>2.10. Deutscharbeit Personenbeschreibung</li>
@@ -47,35 +83,33 @@
         <li>11.10. Spanisch Arbeit</li>
         <li>11.10. Letzter Schultag</li>
     </ol>
+
     <a href="Spiele.html"><button type="button">Spiele</button></a>
     <a href="Rezepte.html"><button type="button">Kochrezepte</button></a>
     <a href="Passwortgames.html"><button type="button">Inframe</button></a>
-        <a href="Error402.html"><button type="button">Free V-Bucks</button></a>
-            <a href="Passwortbewerbung.html"><button type="button">?</button></a>
-    <p></p>
+    <a href="Error402.html"><button type="button">Free V-Bucks</button></a>
+    <a href="Passwortbewerbung.html"><button type="button">?</button></a>
+
     <p class="text">Version 0.1 Beta</p>
     <p class="text-accent">Erstellt von Levi Geimer</p>
     <p class="text-accent">Bitte macht keinen Müll</p>
     <p class="text-accent">Credits an Max Breifellner</p>
-     <p class="text-accent">Gebt gerne Feedback:</p>
-    <form
-  action="https://formspree.io/f/xpwzwwao"
-  method="POST"
->
-          <label>
-    Deine Email:
-    <input type="text" name="Name">
-  </label>
-  <label>
-    Deine Email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Feedback:
- <input type="text" name="Feedback">
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+    
+    <p class="text-accent">Gebt gerne Feedback:</p>
+    <form action="https://formspree.io/f/xpwzwwao" method="POST">
+        <label>
+            Dein Name:
+            <input type="text" name="Name">
+        </label>
+        <label>
+            Deine Email:
+            <input type="email" name="email">
+        </label>
+        <label>
+            Feedback:
+            <input type="text" name="Feedback">
+        </label>
+        <button type="submit">Senden</button>
+    </form>
 </body>
 </html>
