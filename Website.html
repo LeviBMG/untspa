@@ -10,7 +10,6 @@
         body {
             background-color: #ffffff;
             color: #000000;
-            transition: background-color 0.5s, color 0.5s; /* Weiche Übergänge */
         }
 
         /* Dark Mode Styles */
@@ -19,22 +18,7 @@
             color: #ffffff;
         }
 
-        /* Optional: Style für Schaltflächen, die sich je nach Modus ändern sollen */
-        button {
-            background-color: #dddddd;
-            color: #000000;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.5s, color 0.5s; /* Weiche Übergänge */
-        }
-
-        body.dark-mode button {
-            background-color: #333333;
-            color: #ffffff;
-        }
-
-        /* Buttons oben rechts positionieren */
+        /* Schaltflächen oben rechts */
         .top-right-buttons {
             position: fixed;
             top: 10px;
@@ -43,33 +27,58 @@
             gap: 10px;
             z-index: 1000;
         }
+
+        button {
+            background-color: #dddddd;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        body.dark-mode button {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1, h2, p, input, button, iframe {
+                width: 100%;
+                font-size: 1em;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
     </style>
 
     <script>
-        // Überprüfung, ob der Benutzer angemeldet ist
+        // Überprüfen, ob der Benutzer angemeldet ist
         if (!sessionStorage.getItem('username')) {
-            window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite, wenn nicht angemeldet
+            window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite
         }
 
-        // Funktion zum Überprüfen und Anwenden des Modus beim Laden der Seite
+        // Funktion zum Anwenden des Modus beim Laden
         window.onload = function() {
-            // Darkmode ist Standard für neue Benutzer
+            // Dark Mode direkt anwenden, falls ausgewählt
             const preferredMode = localStorage.getItem('theme') || 'dark'; 
             document.body.classList.toggle('dark-mode', preferredMode === 'dark');
-            resetInactivityTimer(); // Inaktivitäts-Überwachung starten
+            resetInactivityTimer();
         };
 
         // Funktion zum Umschalten des Modus
         function toggleTheme() {
             const currentTheme = document.body.classList.toggle('dark-mode');
             const theme = currentTheme ? 'dark' : 'light';
-            localStorage.setItem('theme', theme); // Speichern der Auswahl in localStorage
+            localStorage.setItem('theme', theme); // Auswahl in localStorage speichern
         }
 
         // Logout-Funktion
         function logout() {
             sessionStorage.removeItem('username');
-            window.location.href = "index.html"; // Weiterleitung zur Anmeldeseite nach Logout
+            window.location.href = "index.html"; // Zurück zur Anmeldeseite
         }
 
         // Inaktivitäts-Überwachung
@@ -83,16 +92,15 @@
             // Nach 20 Minuten Inaktivität eine Warnung zeigen
             warningTimer = setTimeout(function() {
                 alert("Du warst 20 Minuten inaktiv. Du wirst in 5 Minuten automatisch abgemeldet.");
-            }, 20 * 60 * 1000); // 20 Minuten in Millisekunden
+            }, 20 * 60 * 1000);
 
             // Nach 25 Minuten Inaktivität abmelden
             inactivityTimer = setTimeout(function() {
                 logout();
                 alert("Du wurdest wegen Inaktivität abgemeldet.");
-            }, 25 * 60 * 1000); // 25 Minuten in Millisekunden
+            }, 25 * 60 * 1000);
         }
 
-        // Aktivitäten, die den Timer zurücksetzen
         window.onmousemove = resetInactivityTimer;
         window.onkeydown = resetInactivityTimer;
     </script>
@@ -107,16 +115,16 @@
     </div>
 
     <script>
-        // Benutzername aus dem Session Storage abrufen und anzeigen
+        // Benutzername aus Session Storage abrufen und anzeigen
         document.getElementById('username-display').textContent = sessionStorage.getItem('username');
     </script>
 
     <!-- Inhalte -->
     <form method="get" action="https://www.google.com/search" target="_blank">
-        <input class="google" type="text" name="q" placeholder="Google Suche" size="31" value="">
+        <input class="google" type="text" name="q" placeholder="Google Suche" size="31">
     </form>
     <form method="get" action="https://youtube.com/search" target="_blank">
-        <input class="google" type="text" name="q" placeholder="Youtube Suche" size="31" value="">
+        <input class="google" type="text" name="q" placeholder="Youtube Suche" size="31">
     </form>
     <form method="get" action="https://en.wikipedia.org/w/index.php">
         <input class="google" type="text" name="search" placeholder="Wikipedia Suche" size="31">
