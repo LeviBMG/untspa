@@ -66,6 +66,14 @@
             const preferredMode = localStorage.getItem('theme') || 'dark'; 
             document.body.classList.toggle('dark-mode', preferredMode === 'dark');
             resetInactivityTimer();
+            
+            // Benutzername anzeigen und ?-Button nur für "Levi" anzeigen
+            const username = sessionStorage.getItem('username');
+            document.getElementById('username-display').textContent = username;
+            const questionButton = document.getElementById('question-button');
+            if (username !== 'Levi') {
+                questionButton.style.display = 'none';
+            }
         };
 
         // Funktion zum Umschalten des Modus
@@ -114,11 +122,6 @@
         <button onclick="logout()">Logout</button>
     </div>
 
-    <script>
-        // Benutzername aus Session Storage abrufen und anzeigen
-        document.getElementById('username-display').textContent = sessionStorage.getItem('username');
-    </script>
-
     <!-- Inhalte -->
     <form method="get" action="https://www.google.com/search" target="_blank">
         <input class="google" type="text" name="q" placeholder="Google Suche" size="31">
@@ -157,6 +160,7 @@
     <a href="Rezepte.html"><button type="button">Kochrezepte</button></a>
     <a href="Passwortgames.html"><button type="button">Inframe</button></a>
     <a href="Error402.html"><button type="button">Free V-Bucks</button></a>
+    <a href="Passwortbewerbung.html"><button type="button" id="question-button">?</button></a>
 
     <p></p>
     <p class="text">Version b1.0.2</p>
