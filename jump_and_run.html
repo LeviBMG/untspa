@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unendliches Jump-and-Run</title>
+    <style>
+        canvas {
+            background-color: white;
+            display: block;
+            margin: 0 auto;
+            border: 5px solid black; /* Schwarzer Rand um das Spielfeld */
+        }
+        body {
+            text-align: center;
+        }
+        #modeSelection {
+            margin: 20px;
+            display: none; /* Versteckt den Auswahlbildschirm standardmäßig */
+        }
+        #gameOverScreen {
+            display: none; /* Versteckt den Game Over-Bildschirm standardmäßig */
+        }
+    </style>
+</head>
+<body>
+    <div id="modeSelection">
+        <h1>Wähle den Spielmodus:</h1>
+        <button onclick="chooseGameMode('easy')">Leichter Modus</button>
+        <button onclick="chooseGameMode('hard')">Schwerer Modus</button>
+        <input type="color" id="playerColor" value="#00FF00"> <!-- Spielerfarbe -->
+        <label for="playerColor">Wähle die Spielerfarbe</label>
+    </div>
+
+    <div id="gameOverScreen">
+        <h1>Game Over!</h1>
+        <button onclick="resetGame()">Neustart</button>
+        <button onclick="showHome()">Home</button> <!-- Home-Button hinzufügen -->
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Spielvariablen
+        const SCREEN_WIDTH = canvas.width;
+        const SCREEN_HEIGHT = canvas.height;
+        const playerWidth = 50;
+        const playerHeight = 50;
+        let gravity = 1;
+
+        let playerX = 100;
+        let playerY = SCREEN_HEIGHT - playerHeight - 50;
+        let playerVelocityY = 0;
+        let obstacleX = SCREEN_WIDTH;
+        const obstacleWidth = 30; // Standardbreite der Hindernisse
+        let obstacleHeight; // Höhe der Hindernisse
+        let obstacleSpeed; // Geschwindigkeit der Hindernisse
+        let jumpForce; // Sprungkraft
+        let score = 0;
+        let gameActive = false;
+        let playerColor = "green"; // Standardfarbe des Spielers
+
+        // Hindernisse mit verschiedenen Höhen
+        const obstacles = [
+            { width: 30, height: 30 }, // Hindernis 1
+            { width: 30, height: 56 }, // Hindernis 2 (schwerer Modus)
+            { width: 50, height: 40 }, // Hindernis 3
+            { width: 40, height: 50 }, // Hindernis 4
+            { width: 60, height: 30 }, // Hindernis 5
+        ];
+
+        // Spielmodus-Auswahl
+        function chooseGameMode(mode) {
+            gameActive = true;
+            obstacleX = SCREEN_WIDTH; // Hindernis zurücksetzen
+            score = 0; // Punktestand zurücksetzen
+            if (mode === "easy") {
+                obstacleSpeed = 3; // Erhöhte Hindernisgeschwindigkeit im leichten Modus
+                jumpForce = -20; // Sprungkraft im leichten Modus
+                gravity = 0.5; // Verringerte Gravitation im leichten Modus
+            } else if (mode === "hard") {
+                obstacleSpeed = 4; // Erhöhte Hindernisgeschwindigkeit im schweren Modus
+                jumpForce = -17; // Erhöhte Sprungkraft im schweren Modus
+                gravity = 0.75; // Leichte Verringerung der Schwerkraft im schweren Modus
+            }
+            document.getElementById("modeSelection").style.display = "none"; // Auswahlbildschirm ausblenden
+            document.getElementById("gameCanvas").style.display = "block"; // Spiel anzeigen
+            resetGame();
+            gameLoop();
+        }
+
+        // Tasteneingaben
+        document.addEventListener("keydown", (event) => {
+            if (event.code === "Space" && gameActive) {
+                if (playerY >= SCREEN_HEIGHT - playerHeight - 50) { // Überprüfe, ob der Spieler den Boden berührt
+                    playerVelocityY = jumpForce; // Spieler springt
+                }
+            }
+        });
+
+        // Spielerfarbe ändern, wenn der Benutzer eine neue Farbe auswählt
+        document.getElementById("playerColor").addEventListener("input", (event) => {
+            playerColor = event.target.value;
+        });
+
+        function resetGame() {
+            playerY = SCREEN_HEIGHT - playerHeight - 50; // Spieler auf den Boden setzen
+            obstacleX = SCREEN_WIDTH; // Hindernis zurücksetzen
+            playerVelocityY = 0; // Spieler-Geschwindigkeit zurücksetzen
+            gameActive = true; // Spiel aktivieren
+            document.getElementById("gameOverScreen").style.display = "none"; // Game Over Bildschirm ausblenden
+        }
+
+        function showHome() {
+            gameActive = false; // Spiel stoppen
+            document.getElementById("modeSelection").style.display = "block"; // Auswahlbildschirm anzeigen
+            document.getElementById("gameCanvas").style.display = "none"; // Spiel ausblenden
+            document.getElementById("gameOverScreen").style.display = "none"; // Game Over-Bildschirm ausblenden
+        }
+
+        function displayText(text, x, y) {
+            ctx.fillStyle = "black";
+            ctx.font = "24px Arial";
+            ctx.fillText(text, x, y);
+        }
+
+        function drawObstacle(x, y, width, height) {
+            ctx.fillStyle = "red";
+            ctx.fillRect(x, y, width, height); // Rechteck für Hindernisse
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            ctx.strokeStyle = "black"; // Schwarzer Rand
+            ctx.strokeRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+            if (gameActive) {
+                // Schwerkraft auf den Spieler anwenden
+                playerVelocityY += gravity;
+                playerY += playerVelocityY;
+
+                // Begrenzung des Bodens
+                if (playerY >= SCREEN_HEIGHT - playerHeight - 50) {
+                    playerY = SCREEN_HEIGHT - playerHeight - 50;
+                    playerVelocityY = 0;
+                }
+
+                // Hindernis bewegen
+                obstacleX -= obstacleSpeed;
+
+                // Neues Hindernis erzeugen
+                if (obstacleX < -obstacleWidth) {
+                    obstacleX = SCREEN_WIDTH;
+                    const randomIndex = Math.floor(Math.random() * obstacles.length);
+                    obstacleHeight = obstacles[randomIndex].height; // Zufällige Höhe
+                    score++; // Punkte sammeln
+                }
+
+                // Kollisionserkennung
+                if (playerX < obstacleX + obstacleWidth &&
+                    playerX + playerWidth > obstacleX &&
+                    playerY + playerHeight > SCREEN_HEIGHT - obstacleHeight - 50) {
+                    gameActive = false;
+                    document.getElementById("gameOverScreen").style.display = "block"; // Game Over Bildschirm anzeigen
+                }
+
+                // Spielfigur und Hindernis zeichnen
+                ctx.fillStyle = playerColor; // Spielerfarbe
+                ctx.fillRect(playerX, playerY, playerWidth, playerHeight);
+                drawObstacle(obstacleX, SCREEN_HEIGHT - obstacleHeight - 50, obstacleWidth, obstacleHeight); // Hindernis leicht abgesenkt
+
+                // Punkte anzeigen
+                displayText(`Score: ${score}`, 10, 30);
+            }
+            requestAnimationFrame(gameLoop); // Loop erneut aufrufen
+        }
+
+        // Starte das Spiel
+        document.getElementById("modeSelection").style.display = "block"; // Auswahlbildschirm anzeigen
+    </script>
+  <a href="Website.html">Zurück</a>
+</body>
+</html>
